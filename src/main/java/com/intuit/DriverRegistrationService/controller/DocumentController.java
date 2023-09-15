@@ -1,2 +1,5 @@
-package com.intuit.DriverRegistrationService.controller;public class DocumentController {
+package com.intuit.DriverRegistrationService.controller;
+
+public class DocumentController {
+
 }
