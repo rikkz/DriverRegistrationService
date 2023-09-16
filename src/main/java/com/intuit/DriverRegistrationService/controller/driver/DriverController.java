@@ -33,16 +33,10 @@ public class DriverController extends BaseController {
      */
     @PostMapping("/isDriverRegistered")
     public ResponseEntity<IsDriverRegisteredResponse> isDriverRegistered (
-            @RequestBody final IsDriverRegisteredRequest isDriverRegisteredRequest) throws BadRequestException {
+            @RequestBody final IsDriverRegisteredRequest isDriverRegisteredRequest) {
 
         logger.info("Here is the Mobile number : "  + isDriverRegisteredRequest.toString());
-
-        try {
-            // Validate the driver registration request
-            driverControllerValidator.validateIsUserRegisteredRequest(isDriverRegisteredRequest);
-        } catch (BadRequestException badRequestException) {
-            throw badRequestException;
-        }
+        driverControllerValidator.validateIsUserRegisteredRequest(isDriverRegisteredRequest);
 
         // If validation passes, return a successful response
         return ResponseEntity.ok(IsDriverRegisteredResponse.builder()
