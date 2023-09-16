@@ -6,19 +6,31 @@ import com.intuit.DriverRegistrationService.exceptions.model.BadRequestException
 import com.intuit.DriverRegistrationService.model.request.IsDriverRegisteredRequest;
 import com.intuit.DriverRegistrationService.model.response.IsDriverRegisteredResponse;
 import com.intuit.DriverRegistrationService.validations.DriverControllerValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class for handling driver-related operations in the Driver Registration Service API.
+ * This class defines endpoints for checking driver registration status and includes request validation.
+ */
 @RestController
 @RequestMapping("/api/drivers")
 public class DriverController extends BaseController {
 
+    /**
+     * Validator for validating driver registration requests.
+     */
     @Autowired
     private DriverControllerValidator driverControllerValidator;
+
+    /**
+     * Handles a POST request to check if a driver is registered.
+     *
+     * @param isDriverRegisteredRequest The request body containing driver information.
+     * @return A ResponseEntity containing the response indicating whether the driver is registered.
+     * @throws BadRequestException If the request is invalid, such as an invalid country code or mobile number.
+     */
     @PostMapping("/isDriverRegistered")
     public ResponseEntity<IsDriverRegisteredResponse> isDriverRegistered (
             @RequestBody final IsDriverRegisteredRequest isDriverRegisteredRequest) throws BadRequestException {
@@ -26,10 +38,13 @@ public class DriverController extends BaseController {
         logger.info("Here is the Mobile number : "  + isDriverRegisteredRequest.toString());
 
         try {
+            // Validate the driver registration request
             driverControllerValidator.validateIsUserRegisteredRequest(isDriverRegisteredRequest);
         } catch (BadRequestException badRequestException) {
             throw badRequestException;
         }
+
+        // If validation passes, return a successful response
         return ResponseEntity.ok(IsDriverRegisteredResponse.builder()
                 .isDriverRegistered(true)
                 .build());
