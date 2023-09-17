@@ -27,5 +27,3 @@ replay_pid*
 build/
 .DS_Store
 .idea/
-
-.gitignore
