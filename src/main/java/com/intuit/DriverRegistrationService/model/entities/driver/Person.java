@@ -2,6 +2,7 @@ package com.intuit.DriverRegistrationService.model.entities.driver;
 
 import lombok.Builder;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**

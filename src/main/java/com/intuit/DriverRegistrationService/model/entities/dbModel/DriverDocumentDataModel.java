@@ -3,6 +3,9 @@ package com.intuit.DriverRegistrationService.model.entities.dbModel;
 import com.intuit.DriverRegistrationService.model.entities.document.Document;
 import lombok.Builder;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,4 +29,9 @@ public class DriverDocumentDataModel {
      * The identifier of the vehicle associated with the driver (if applicable).
      */
     private final String vehicleId;
+
+    public static DriverDocumentDataModelBuilder builder(Collection<Document> documentList) {
+        return new DriverDocumentDataModelBuilder()
+                .documentList(new ArrayList<>(documentList)); // Perform a defensive copy
+    }
 }
