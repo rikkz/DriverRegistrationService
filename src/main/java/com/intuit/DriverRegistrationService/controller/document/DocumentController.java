@@ -1,5 +1,42 @@
 package com.intuit.DriverRegistrationService.controller.document;
 
-public class DocumentController {
+import com.intuit.DriverRegistrationService.controller.BaseController;
+import com.intuit.DriverRegistrationService.model.request.DocumentRequiredForVehicleRegistrationRequest;
+import com.intuit.DriverRegistrationService.model.request.UploadDocumentForTheDriverRequest;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Controller class for handling document-related operations in the Driver Registration Service API.
+ * This class defines endpoints to get required documents against vehicle information and upload it.
+ */
+@RestController
+@RequestMapping("/api/document")
+public class DocumentController extends BaseController {
+
+    /**
+     * Handles a POST request to get the  document required uploading to complete the Vehicle registration.
+     *
+     * @param documentRequiredForVehicleRegistrationRequest The request body containing requested DriverId and VehicleId.
+     */
+    @PostMapping("/getDocumentRequiredForVehicleRegistration")
+    public void getDocumentRequiredForVehicleRegistration (
+            @RequestBody final DocumentRequiredForVehicleRegistrationRequest
+                    documentRequiredForVehicleRegistrationRequest) {
+        logger.info("Starting the getDocumentRequiredForVehicleRegistration Journey");
+    }
+
+    /**
+     * Handles a POST request to upload the document for the requested vehicle.
+     *
+     * @param uploadDocumentForTheDriverRequest The request body containing document url needs to be uploaded.
+     */
+    @PostMapping("/uploadDocumentForTheDriver")
+    public void uploadDocumentForTheDriver (
+            @RequestBody final UploadDocumentForTheDriverRequest uploadDocumentForTheDriverRequest) {
+        logger.info("Starting the uploadDocumentForTheDriverRequest Journey");
+    }
 
 }

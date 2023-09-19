@@ -3,7 +3,10 @@ package com.intuit.DriverRegistrationService.controller.driver;
 
 import com.intuit.DriverRegistrationService.controller.BaseController;
 import com.intuit.DriverRegistrationService.exceptions.model.BadRequestException;
+import com.intuit.DriverRegistrationService.model.request.GetDriverInformationRequest;
 import com.intuit.DriverRegistrationService.model.request.IsDriverRegisteredRequest;
+import com.intuit.DriverRegistrationService.model.request.RegisterDriverRequest;
+import com.intuit.DriverRegistrationService.model.request.UpdateDriverStatusRequest;
 import com.intuit.DriverRegistrationService.model.response.IsDriverRegisteredResponse;
 import com.intuit.DriverRegistrationService.validations.DriverControllerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +38,45 @@ public class DriverController extends BaseController {
     public ResponseEntity<IsDriverRegisteredResponse> isDriverRegistered (
             @RequestBody final IsDriverRegisteredRequest isDriverRegisteredRequest) {
 
-        logger.info("Here is the Mobile number : "  + isDriverRegisteredRequest.toString());
+        logger.info("Starting the isDriverRegistered Journey");
         driverControllerValidator.validateIsUserRegisteredRequest(isDriverRegisteredRequest);
 
         // If validation passes, return a successful response
         return ResponseEntity.ok(IsDriverRegisteredResponse.builder()
                 .isDriverRegistered(true)
                 .build());
+    }
+
+    /**
+     * Handles a POST request to register a new driver.
+     *
+     * @param registerDriverRequest The request body containing driver registration information.
+     */
+    @PostMapping("/registerDriver")
+    public void registerDriver (
+            @RequestBody final RegisterDriverRequest registerDriverRequest) {
+        logger.info("Starting the registerDriver Journey");
+    }
+
+    /**
+     * Handles a POST request to update the status of a driver.
+     *
+     * @param updateDriverStatusRequest The request body containing the updated driver status.
+     */
+    @PostMapping("/updateDriverStatus")
+    public void updateDriverStatus (
+            @RequestBody final UpdateDriverStatusRequest updateDriverStatusRequest) {
+        logger.info("Starting the updateDriverStatus Journey");
+    }
+
+    /**
+     * Handles a GET request to retrieve driver information.
+     *
+     * @param getDriverInformationRequest The request body containing the driver's information request.
+     */
+    @GetMapping("/getDriverInformation")
+    public void getDriverInformation (
+            @RequestBody final GetDriverInformationRequest getDriverInformationRequest) {
+        logger.info("Starting the getDriverInformation Journey");
     }
 }
