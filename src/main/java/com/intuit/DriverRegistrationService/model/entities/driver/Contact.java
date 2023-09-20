@@ -1,6 +1,7 @@
 package com.intuit.DriverRegistrationService.model.entities.driver;
 
 import lombok.Builder;
+import lombok.NonNull;
 
 /**
  * The `ContactInformation` class represents an individual's contact information,

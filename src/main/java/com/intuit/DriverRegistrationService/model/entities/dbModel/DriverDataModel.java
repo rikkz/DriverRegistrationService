@@ -5,6 +5,7 @@ import com.intuit.DriverRegistrationService.model.entities.driver.DriverStatus;
 import com.intuit.DriverRegistrationService.model.entities.driver.Person;
 import com.intuit.DriverRegistrationService.model.entities.address.AddressBook;
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * and personal information.
  */
 @Builder
+@Getter
 @Document(collection = "Driver")
 public class DriverDataModel {
     /**
@@ -28,9 +30,19 @@ public class DriverDataModel {
     private final DriverStatus driverStatus;
 
     /**
-     * The contact information of the driver, including email, country code, and mobile number.
+     * The email address of the individual.
      */
-    private final Contact driverContact;
+    private final String emailId;
+
+    /**
+     * The country code associated with the individual's phone number.
+     */
+    private final String countryCode;
+
+    /**
+     * The mobile phone number of the individual.
+     */
+    private final String mobileNumber;
 
     /**
      * The address book of the driver, containing current and permanent addresses.

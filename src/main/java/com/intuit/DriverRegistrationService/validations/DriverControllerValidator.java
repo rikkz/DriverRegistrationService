@@ -3,6 +3,9 @@ package com.intuit.DriverRegistrationService.validations;
 import com.intuit.DriverRegistrationService.config.CountryDigitsMapConfig;
 import com.intuit.DriverRegistrationService.exceptions.codes.BadRequestExceptionCode;
 import com.intuit.DriverRegistrationService.exceptions.model.*;
+import com.intuit.DriverRegistrationService.exceptions.service.DriverAlreadyExistInTheDB;
+import com.intuit.DriverRegistrationService.exceptions.service.DriverDoesNotExistInTheDB;
+import com.intuit.DriverRegistrationService.model.entities.dbModel.DriverDataModel;
 import com.intuit.DriverRegistrationService.model.request.IsDriverRegisteredRequest;
 import lombok.AllArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -10,7 +13,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -31,7 +36,7 @@ public class DriverControllerValidator {
      * registration verification.
      * Throws exceptions for invalid country codes or mobile number lengths.
      *
-     * @param isDriverRegisteredRequest The request object to be validated.
+     * @param requestedCountryCode , requestedMobileNumber The request object to be validated.
      * @throws InvalidCountryCodeException If the provided country code is invalid or not onboarded to the system.
      * @throws InvalidMobileNumberException If the provided mobile number does not match the expected length for the
      * corresponding country code.
@@ -73,9 +78,31 @@ public class DriverControllerValidator {
             // If parsing is successful, the UUID is valid.
         } catch (IllegalArgumentException e) {
             // If parsing fails, the UUID is not valid.
-            throw new InvalidDriverIdException(String.format("Following Driver Id : %s is not valid, It's not in correct format",
-                    driverId));
+            throw new InvalidDriverIdException(
+                    String.format("Following Driver Id : %s is not valid, It's not in correct format", driverId));
         }
+    }
+    public void doesDriverExist(final Optional<DriverDataModel> driverDataModelOptional,
+                                final String driverId) {
+       if(!doesDriverExist(driverDataModelOptional)) {
+           throw new DriverDoesNotExistInTheDB(
+                   String.format("Following Driver Id : %s is not valid, It doesn't exist in system", driverId));
+       }
+    }
+
+    /**
+     * Driver should not exist in the system.
+     * @param driverDataModelList
+     */
+    public void driverShouldNotExist(final List<DriverDataModel> driverDataModelList) {
+        if(driverDataModelList.size() > 0) {
+            throw new DriverAlreadyExistInTheDB(
+                    String.format("Following Driver already exist in system"));
+        }
+    }
+
+    private boolean doesDriverExist(final Optional<DriverDataModel> driverDataModelOptional) {
+        return driverDataModelOptional.isPresent();
     }
 
     public void validateEmail(final String requestedEmailId) {

@@ -4,8 +4,10 @@ import com.intuit.DriverRegistrationService.model.entities.address.AddressBook;
 import com.intuit.DriverRegistrationService.model.entities.driver.Contact;
 import com.intuit.DriverRegistrationService.model.entities.driver.Person;
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class GetDriverInformationResponse {
     private final String driverId;
     private final String driverStatus;

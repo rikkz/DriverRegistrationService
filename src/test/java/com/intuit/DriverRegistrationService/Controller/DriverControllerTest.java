@@ -3,6 +3,9 @@ package com.intuit.DriverRegistrationService.Controller;
 import com.intuit.DriverRegistrationService.controller.driver.DriverController;
 import com.intuit.DriverRegistrationService.model.request.RegisterDriverRequest;
 import com.intuit.DriverRegistrationService.model.request.UpdateDriverStatusRequest;
+import com.intuit.DriverRegistrationService.model.request.common.Address;
+import com.intuit.DriverRegistrationService.model.request.common.Gender;
+import com.intuit.DriverRegistrationService.model.request.common.Name;
 import com.intuit.DriverRegistrationService.model.response.GetDriverInformationResponse;
 import com.intuit.DriverRegistrationService.model.response.IsDriverRegisteredResponse;
 import com.intuit.DriverRegistrationService.service.DriverService;
@@ -14,7 +17,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,11 +65,12 @@ public class DriverControllerTest {
     void testRegisterDriver() {
         // Create a sample request
 
-        RegisterDriverRequest.Address sampleAddress = RegisterDriverRequest.Address.builder()
+        Address sampleAddress = Address.builder()
                 .addressLine1("1st Street")
                 .addressLine2("2nd Lane")
                 .addressLine3("House no. 64")
                 .state("Arizona")
+                .city("Sonipat")
                 .zipCode("111-111")
                 .country("USA")
                 .build();
@@ -78,8 +81,8 @@ public class DriverControllerTest {
                 .countryCode("+91")
                 .dob(date)
                 .emailId("mangla.rohit")
-                .gender(RegisterDriverRequest.Gender.MALE)
-                .name(RegisterDriverRequest.Name.builder()
+                .gender(Gender.MALE)
+                .name(Name.builder()
                         .firstName("Rohit")
                         .lastName("Rakesh")
                         .middleName("Mangla")

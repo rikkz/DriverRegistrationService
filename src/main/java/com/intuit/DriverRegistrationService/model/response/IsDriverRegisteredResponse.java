@@ -18,4 +18,11 @@ public class IsDriverRegisteredResponse {
      * If true, it means the driver is registered; if false, the driver is not registered.
      */
     private final Boolean isDriverRegistered;
+
+    /**
+     * Indicates whether the driver is registered or not.
+     * If true, it means the driver is registered; if false, the driver is not registered.
+     */
+    private final String driverId;
+
 }

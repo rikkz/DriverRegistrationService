@@ -37,5 +37,10 @@ public class Address {
      * The city where the address is located.
      */
     private final String city;
+
+    /**
+     * The city where the address is located.
+     */
+    private final String country;
 }
 

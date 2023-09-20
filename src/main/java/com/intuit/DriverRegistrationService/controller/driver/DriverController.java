@@ -59,10 +59,10 @@ public class DriverController {
      *
      * @param updateDriverDetailsRequest The request body containing updated driver registration information.
      */
-    @PostMapping("/updateDriverDetails")
+    @PutMapping("/updateDriverDetails")
     public void updateDriverDetails (
             @NonNull @RequestBody final UpdateDriverDetailsRequest updateDriverDetailsRequest) {
-        log.info("Starting the registerDriver Journey");
+        log.info("Starting the updateDriverDetails Journey");
         driverService.updateDriverDetails(updateDriverDetailsRequest);
     }
 

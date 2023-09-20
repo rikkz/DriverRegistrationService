@@ -1,15 +1,16 @@
 package com.intuit.DriverRegistrationService.model.entities.driver;
 
 import lombok.Builder;
+import lombok.Getter;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * The `Person` class represents an individual with personal information such as their name,
  * date of birth, and gender.
  */
 @Builder
+@Getter
 public class Person {
     /**
      * The first name of the person.
@@ -29,7 +30,7 @@ public class Person {
     /**
      * The date of birth of the person.
      */
-    private final Date dateOfBirth;
+    private final LocalDate dateOfBirth;
 
     /**
      * The gender of the person, represented using the `Gender` enum.

@@ -31,5 +31,15 @@ public enum BadRequestExceptionCode {
     /**
      * Error code indicating that the provided age is invalid.
      */
-    INVALID_AGE
+    INVALID_AGE,
+
+    /**
+     * Error code indicating that driver doesn't exist.
+     */
+    DRIVER_DOES_NOT_EXIST,
+
+    /**
+     * Error code indicating that driver already exist.
+     */
+    DRIVER_ALREADY_EXIST
 }
