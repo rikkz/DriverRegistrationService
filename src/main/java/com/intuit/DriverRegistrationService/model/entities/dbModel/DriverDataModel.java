@@ -1,9 +1,8 @@
 package com.intuit.DriverRegistrationService.model.entities.dbModel;
 
-import com.intuit.DriverRegistrationService.model.entities.driver.Contact;
+import com.intuit.DriverRegistrationService.model.entities.address.AddressBook;
 import com.intuit.DriverRegistrationService.model.entities.driver.DriverStatus;
 import com.intuit.DriverRegistrationService.model.entities.driver.Person;
-import com.intuit.DriverRegistrationService.model.entities.address.AddressBook;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;

@@ -1,11 +1,13 @@
 package com.intuit.DriverRegistrationService.model.request;
 
-import lombok.*;
-
-import java.time.LocalDate;
 import com.intuit.DriverRegistrationService.model.request.common.Address;
 import com.intuit.DriverRegistrationService.model.request.common.Gender;
 import com.intuit.DriverRegistrationService.model.request.common.Name;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NonNull;
+
+import java.time.LocalDate;
 
 
 /**

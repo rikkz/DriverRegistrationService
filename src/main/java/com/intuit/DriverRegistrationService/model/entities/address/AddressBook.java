@@ -1,6 +1,5 @@
 package com.intuit.DriverRegistrationService.model.entities.address;
 
-import com.intuit.DriverRegistrationService.model.entities.address.Address;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -3,8 +3,6 @@ package com.intuit.DriverRegistrationService.exceptions.service;
 import com.intuit.DriverRegistrationService.exceptions.codes.BadRequestExceptionCode;
 import com.intuit.DriverRegistrationService.exceptions.model.BadRequestException;
 
-import static com.intuit.DriverRegistrationService.exceptions.codes.BadRequestExceptionCode.DRIVER_DOES_NOT_EXIST;
-
 /**
  * Runtime Exception if the Driver already exist in the system.
  */

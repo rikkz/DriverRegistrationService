@@ -1,16 +1,13 @@
 package com.intuit.DriverRegistrationService.validations;
 
 import com.intuit.DriverRegistrationService.config.CountryDigitsMapConfig;
-import com.intuit.DriverRegistrationService.exceptions.codes.BadRequestExceptionCode;
 import com.intuit.DriverRegistrationService.exceptions.model.*;
 import com.intuit.DriverRegistrationService.exceptions.service.DriverAlreadyExistInTheDB;
 import com.intuit.DriverRegistrationService.exceptions.service.DriverDoesNotExistInTheDB;
 import com.intuit.DriverRegistrationService.model.entities.dbModel.DriverDataModel;
-import com.intuit.DriverRegistrationService.model.request.IsDriverRegisteredRequest;
 import lombok.AllArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 import java.util.List;
