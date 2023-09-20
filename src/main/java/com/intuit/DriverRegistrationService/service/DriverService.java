@@ -49,7 +49,7 @@ public class DriverService {
     /**
      * Service operation for the isDriverRegistered.
      */
-    @Cacheable(value = "DriverCache", key = "#requestedMobileNumber" + '-' + "#requestedCountryCode")
+    @Cacheable(value = "DriverCache", key = "{#requestedCountryCode , #requestedMobileNumber}")
     public ResponseEntity<IsDriverRegisteredResponse> isDriverRegistered(
             @NonNull final String requestedCountryCode,
             @NonNull final String requestedMobileNumber) {

@@ -46,7 +46,9 @@ dependencies {
 
 	// Implementing The Cache
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
-	//implementation 'org.ehcache:ehcache'
+
+	// Retryable in Spring
+	implementation 'org.springframework.retry:spring-retry'
 }
 
 tasks.named('test') {
