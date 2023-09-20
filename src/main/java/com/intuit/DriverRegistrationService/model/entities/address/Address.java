@@ -1,12 +1,14 @@
 package com.intuit.DriverRegistrationService.model.entities.address;
 
 import lombok.Builder;
+import lombok.Getter;
 
 /**
  * The `Address` class represents a physical address with multiple components
  * such as address lines, city, state, and zip code.
  */
 @Builder
+@Getter
 public class Address {
     /**
      * The first line of the address, typically containing the street address.

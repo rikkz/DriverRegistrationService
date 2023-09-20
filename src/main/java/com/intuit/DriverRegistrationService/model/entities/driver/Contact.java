@@ -1,6 +1,7 @@
 package com.intuit.DriverRegistrationService.model.entities.driver;
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NonNull;
 
 /**
@@ -8,6 +9,7 @@ import lombok.NonNull;
  * including email, country code, and mobile number.
  */
 @Builder
+@Getter
 public class Contact {
 
     /**
