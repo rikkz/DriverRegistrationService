@@ -11,12 +11,8 @@ public class InvalidMobileNumberException extends BadRequestException {
 
     /**
      * Constructs a new {@code InvalidMobileNumberException} with the requested mobile number.
-     *
-     * @param requestedMobileNumber The mobile number that triggered the exception.
      */
-    public InvalidMobileNumberException(final String requestedMobileNumber) {
-        super(BadRequestExceptionCode.INVALID_MOBILE_NUMBER ,
-                String.format("Following Mobile Number : %s , doesn't match the length of a corresponding countryCode",
-                    requestedMobileNumber));
+    public InvalidMobileNumberException(final String message) {
+        super(BadRequestExceptionCode.INVALID_MOBILE_NUMBER , message);
     }
 }

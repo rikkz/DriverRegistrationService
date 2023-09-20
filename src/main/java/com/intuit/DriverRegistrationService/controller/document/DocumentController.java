@@ -1,8 +1,8 @@
 package com.intuit.DriverRegistrationService.controller.document;
 
-import com.intuit.DriverRegistrationService.controller.BaseController;
 import com.intuit.DriverRegistrationService.model.request.DocumentRequiredForVehicleRegistrationRequest;
 import com.intuit.DriverRegistrationService.model.request.UploadDocumentForTheDriverRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/document")
-public class DocumentController extends BaseController {
+@Slf4j
+public class DocumentController {
 
     /**
      * Handles a POST request to get the  document required uploading to complete the Vehicle registration.
@@ -25,7 +26,7 @@ public class DocumentController extends BaseController {
     public void getDocumentRequiredForVehicleRegistration (
             @RequestBody final DocumentRequiredForVehicleRegistrationRequest
                     documentRequiredForVehicleRegistrationRequest) {
-        logger.info("Starting the getDocumentRequiredForVehicleRegistration Journey");
+        log.info("Starting the getDocumentRequiredForVehicleRegistration Journey");
     }
 
     /**
@@ -36,7 +37,7 @@ public class DocumentController extends BaseController {
     @PostMapping("/uploadDocumentForTheDriver")
     public void uploadDocumentForTheDriver (
             @RequestBody final UploadDocumentForTheDriverRequest uploadDocumentForTheDriverRequest) {
-        logger.info("Starting the uploadDocumentForTheDriverRequest Journey");
+        log.info("Starting the uploadDocumentForTheDriverRequest Journey");
     }
 
 }

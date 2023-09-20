@@ -1,14 +1,14 @@
 package com.intuit.DriverRegistrationService.controller.driver;
 
 
-import com.intuit.DriverRegistrationService.controller.BaseController;
 import com.intuit.DriverRegistrationService.exceptions.model.BadRequestException;
 import com.intuit.DriverRegistrationService.model.request.GetDriverInformationRequest;
-import com.intuit.DriverRegistrationService.model.request.IsDriverRegisteredRequest;
 import com.intuit.DriverRegistrationService.model.request.RegisterDriverRequest;
 import com.intuit.DriverRegistrationService.model.request.UpdateDriverStatusRequest;
 import com.intuit.DriverRegistrationService.model.response.IsDriverRegisteredResponse;
 import com.intuit.DriverRegistrationService.validations.DriverControllerValidator;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/drivers")
-public class DriverController extends BaseController {
+@Slf4j
+public class DriverController {
 
     /**
      * Validator for validating driver registration requests.
@@ -34,12 +35,13 @@ public class DriverController extends BaseController {
      * @return A ResponseEntity containing the response indicating whether the driver is registered.
      * @throws BadRequestException If the request is invalid, such as an invalid country code or mobile number.
      */
-    @PostMapping("/isDriverRegistered")
+    @GetMapping("/isDriverRegistered")
     public ResponseEntity<IsDriverRegisteredResponse> isDriverRegistered (
-            @RequestBody final IsDriverRegisteredRequest isDriverRegisteredRequest) {
+            @RequestParam @NonNull final String requestedCountryCode ,
+            @RequestParam @NonNull final String  requestedMobileNumber) {
 
-        logger.info("Starting the isDriverRegistered Journey");
-        driverControllerValidator.validateIsUserRegisteredRequest(isDriverRegisteredRequest);
+        log.info("Starting the isDriverRegistered Journey");
+        driverControllerValidator.validateIsUserRegisteredRequest(requestedCountryCode, requestedMobileNumber);
 
         // If validation passes, return a successful response
         return ResponseEntity.ok(IsDriverRegisteredResponse.builder()
@@ -55,7 +57,7 @@ public class DriverController extends BaseController {
     @PostMapping("/registerDriver")
     public void registerDriver (
             @RequestBody final RegisterDriverRequest registerDriverRequest) {
-        logger.info("Starting the registerDriver Journey");
+        log.info("Starting the registerDriver Journey");
     }
 
     /**
@@ -66,7 +68,7 @@ public class DriverController extends BaseController {
     @PostMapping("/updateDriverStatus")
     public void updateDriverStatus (
             @RequestBody final UpdateDriverStatusRequest updateDriverStatusRequest) {
-        logger.info("Starting the updateDriverStatus Journey");
+        log.info("Starting the updateDriverStatus Journey");
     }
 
     /**
@@ -77,6 +79,6 @@ public class DriverController extends BaseController {
     @GetMapping("/getDriverInformation")
     public void getDriverInformation (
             @RequestBody final GetDriverInformationRequest getDriverInformationRequest) {
-        logger.info("Starting the getDriverInformation Journey");
+        log.info("Starting the getDriverInformation Journey");
     }
 }

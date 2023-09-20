@@ -1,9 +1,8 @@
 package com.intuit.DriverRegistrationService.controller.vehicle;
 
-import com.intuit.DriverRegistrationService.controller.BaseController;
 import com.intuit.DriverRegistrationService.model.request.GetVehicleDetailsRequest;
-import com.intuit.DriverRegistrationService.model.request.RegisterDriverRequest;
 import com.intuit.DriverRegistrationService.model.request.RegisterVehicleRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/vehicles")
-public class VehicleController extends BaseController {
+@Slf4j
+public class VehicleController {
 
     /**
      * Handles a POST request to register a new vehicle against a driver.
@@ -25,7 +25,7 @@ public class VehicleController extends BaseController {
     @PostMapping("/registerVehicle")
     public void registerVehicle (
             @RequestBody final RegisterVehicleRequest registerVehicleRequest) {
-        logger.info("Starting the registerVehicle Journey");
+        log.info("Starting the registerVehicle Journey");
     }
 
     /**
@@ -36,7 +36,7 @@ public class VehicleController extends BaseController {
     @PostMapping("/getVehicleDetails")
     public void getVehicleDetails (
             @RequestBody final GetVehicleDetailsRequest getVehicleDetailsRequest) {
-        logger.info("Starting the getVehicleDetails Journey");
+        log.info("Starting the getVehicleDetails Journey");
     }
 
 }

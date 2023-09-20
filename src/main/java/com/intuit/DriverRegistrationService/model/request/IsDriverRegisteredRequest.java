@@ -1,5 +1,6 @@
 package com.intuit.DriverRegistrationService.model.request;
 
+import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
