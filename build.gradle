@@ -43,6 +43,10 @@ dependencies {
 
 	// MongoDB on the local
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+	// Implementing The Cache
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	//implementation 'org.ehcache:ehcache'
 }
 
 tasks.named('test') {

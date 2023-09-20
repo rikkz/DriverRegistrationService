@@ -13,6 +13,8 @@ import com.intuit.DriverRegistrationService.validations.DriverControllerValidato
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,7 @@ public class DriverService {
     /**
      * Service operation for the isDriverRegistered.
      */
+    @Cacheable(value = "DriverCache", key = "#requestedMobileNumber" + '-' + "#requestedCountryCode")
     public ResponseEntity<IsDriverRegisteredResponse> isDriverRegistered(
             @NonNull final String requestedCountryCode,
             @NonNull final String requestedMobileNumber) {
@@ -67,6 +70,7 @@ public class DriverService {
     /**
      * Service operation to fetch the driver details
      */
+    @Cacheable(value = "DriverCache", key = "#driverId")
     public ResponseEntity<GetDriverInformationResponse> getDriverInformation(
             @NonNull final String driverId) {
 
@@ -88,6 +92,7 @@ public class DriverService {
     /**
      * Service operation to register a update the  driver status.
      */
+    @CacheEvict(value = "DriverCache" , key = "#updateDriverStatusRequest.driverId")
     public void updateDriverStatus(@NonNull final UpdateDriverStatusRequest updateDriverStatusRequest) {
         driverControllerValidator.isValidDriverId(updateDriverStatusRequest.getDriverId());
 
