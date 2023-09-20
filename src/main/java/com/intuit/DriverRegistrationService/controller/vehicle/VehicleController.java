@@ -26,6 +26,7 @@ public class VehicleController {
     public void registerVehicle (
             @RequestBody final RegisterVehicleRequest registerVehicleRequest) {
         log.info("Starting the registerVehicle Journey");
+        //TODO : Complete the implementation for the Rest API
     }
 
     /**
@@ -37,6 +38,7 @@ public class VehicleController {
     public void getVehicleDetails (
             @RequestBody final GetVehicleDetailsRequest getVehicleDetailsRequest) {
         log.info("Starting the getVehicleDetails Journey");
+        //TODO : Complete the implementation for the Rest API
     }
 
 }

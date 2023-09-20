@@ -27,6 +27,7 @@ public class DocumentController {
             @RequestBody final DocumentRequiredForVehicleRegistrationRequest
                     documentRequiredForVehicleRegistrationRequest) {
         log.info("Starting the getDocumentRequiredForVehicleRegistration Journey");
+        //TODO : Complete the implementation for the Rest API
     }
 
     /**
@@ -38,6 +39,7 @@ public class DocumentController {
     public void uploadDocumentForTheDriver (
             @RequestBody final UploadDocumentForTheDriverRequest uploadDocumentForTheDriverRequest) {
         log.info("Starting the uploadDocumentForTheDriverRequest Journey");
+        //TODO : Complete the implementation for the Rest API
     }
 
 }

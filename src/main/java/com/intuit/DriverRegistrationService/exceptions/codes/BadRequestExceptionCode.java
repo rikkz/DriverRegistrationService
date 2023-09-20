@@ -18,4 +18,8 @@ public enum BadRequestExceptionCode {
      */
     INVALID_MOBILE_NUMBER,
 
+    /**
+     * Error code indicating that the provided driverId is invalid.
+     */
+    INVALID_DRIVER_ID
 }
