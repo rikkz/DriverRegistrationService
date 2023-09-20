@@ -1,20 +1,26 @@
 package com.intuit.DriverRegistrationService.model.request;
 
-import io.swagger.v3.oas.models.media.EmailSchema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.util.Date;
 
-/**
- * Represents a request to register a driver.
- */
 @Getter
 @Builder
-public class RegisterDriverRequest {
+public class UpdateDriverDetailsRequest {
+
+
+    /**
+     * Represents the driver's name.
+     */
+    @NonNull
+    private String driverId;
+
     /**
      * Represents the driver's name.
      */
@@ -36,6 +42,8 @@ public class RegisterDriverRequest {
     /**
      * Represents the driver's email address.
      */
+    @NonNull
+    @Email(message = "Invalid email address")
     private String emailId;
 
     /**
@@ -144,4 +152,3 @@ public class RegisterDriverRequest {
         MALE, FEMALE, NOT_SPECIFIED
     }
 }
-

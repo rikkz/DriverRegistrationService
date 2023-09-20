@@ -35,8 +35,14 @@ dependencies {
 	implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
 	implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
 
+	// Apache Validator
+	implementation group: 'commons-validator', name: 'commons-validator', version: '1.7'
+
 	//SWAGGER
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.2'
+
+	// MongoDB on the local
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 }
 
 tasks.named('test') {

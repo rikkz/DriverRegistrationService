@@ -3,6 +3,7 @@ package com.intuit.DriverRegistrationService.controller.driver;
 
 import com.intuit.DriverRegistrationService.exceptions.model.BadRequestException;
 import com.intuit.DriverRegistrationService.model.request.RegisterDriverRequest;
+import com.intuit.DriverRegistrationService.model.request.UpdateDriverDetailsRequest;
 import com.intuit.DriverRegistrationService.model.request.UpdateDriverStatusRequest;
 import com.intuit.DriverRegistrationService.model.response.GetDriverInformationResponse;
 import com.intuit.DriverRegistrationService.model.response.IsDriverRegisteredResponse;
@@ -51,6 +52,18 @@ public class DriverController {
             @NonNull @RequestBody final RegisterDriverRequest registerDriverRequest) {
         log.info("Starting the registerDriver Journey");
         driverService.registerDriver(registerDriverRequest);
+    }
+
+    /**
+     * Handles a POST request to register a new driver.
+     *
+     * @param updateDriverDetailsRequest The request body containing updated driver registration information.
+     */
+    @PostMapping("/updateDriverDetails")
+    public void updateDriverDetails (
+            @NonNull @RequestBody final UpdateDriverDetailsRequest updateDriverDetailsRequest) {
+        log.info("Starting the registerDriver Journey");
+        driverService.updateDriverDetails(updateDriverDetailsRequest);
     }
 
     /**

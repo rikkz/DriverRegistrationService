@@ -2,15 +2,14 @@ package com.intuit.DriverRegistrationService.validations;
 
 import com.intuit.DriverRegistrationService.config.CountryDigitsMapConfig;
 import com.intuit.DriverRegistrationService.exceptions.codes.BadRequestExceptionCode;
-import com.intuit.DriverRegistrationService.exceptions.model.BadRequestException;
-import com.intuit.DriverRegistrationService.exceptions.model.InvalidCountryCodeException;
-import com.intuit.DriverRegistrationService.exceptions.model.InvalidDriverIdException;
-import com.intuit.DriverRegistrationService.exceptions.model.InvalidMobileNumberException;
+import com.intuit.DriverRegistrationService.exceptions.model.*;
 import com.intuit.DriverRegistrationService.model.request.IsDriverRegisteredRequest;
 import lombok.AllArgsConstructor;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.UUID;
 
@@ -79,9 +78,30 @@ public class DriverControllerValidator {
         }
     }
 
-    public void validateDriverName(String requestedFirstName,
-                                   String requestedMiddleName,
-                                   String requestedLastName) {
+    public void validateEmail(final String requestedEmailId) {
+        // It's not a mandatory field.
+        if(requestedEmailId == null) {
+            return;
+        }
 
+        if (!EmailValidator.getInstance().isValid(requestedEmailId)) {
+            throw new InvalidEmailAddressException(
+                    String.format("Following Email Id : %s is not valid, It's not in correct format",
+                            requestedEmailId));
+        }
+    }
+
+    public void validateAge(final LocalDate birthDate) {
+        // It's not a mandatory field.
+        LocalDate minDate = LocalDate.now().minusYears(18);
+        LocalDate maxDate = LocalDate.now().minusYears(100);
+
+
+
+        if (!birthDate.isBefore(minDate) || birthDate.isBefore(maxDate)) {
+            throw new InvalidAgeException(
+                    String.format("Following Age : %s is not valid, It's should be between 18 to 100 years",
+                            birthDate));
+        }
     }
 }

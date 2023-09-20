@@ -21,5 +21,15 @@ public enum BadRequestExceptionCode {
     /**
      * Error code indicating that the provided driverId is invalid.
      */
-    INVALID_DRIVER_ID
+    INVALID_DRIVER_ID,
+
+    /**
+     * Error code indicating that the provided email ID is invalid.
+     */
+    INVALID_EMAIL_ID,
+
+    /**
+     * Error code indicating that the provided age is invalid.
+     */
+    INVALID_AGE
 }

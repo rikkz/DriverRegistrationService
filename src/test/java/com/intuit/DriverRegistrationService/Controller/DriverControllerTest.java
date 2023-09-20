@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.mockito.Mockito.*;
@@ -71,8 +72,7 @@ public class DriverControllerTest {
                 .country("USA")
                 .build();
 
-        Date date = new Date();
-        date.setTime(System.currentTimeMillis());
+        LocalDate date = LocalDate.of(2000, 12, 12);
 
         RegisterDriverRequest request = RegisterDriverRequest.builder()
                 .countryCode("+91")
