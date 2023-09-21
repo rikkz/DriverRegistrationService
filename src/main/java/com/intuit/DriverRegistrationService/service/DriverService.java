@@ -115,7 +115,8 @@ public class DriverService {
     /**
      * Service operation to register a new driver details
      */
-    public void registerDriver(@NonNull final RegisterDriverRequest registerDriverRequest) {
+    @CacheEvict(value = "DriverCache" ,  key = "{#registerDriverRequest.getCountryCode() , #registerDriverRequest.getPhoneNumber()}")
+    public ResponseEntity<String> registerDriver(@NonNull final RegisterDriverRequest registerDriverRequest) {
 
         log.info("Reached the Service Layer for registerDriver");
         //validations
@@ -123,6 +124,9 @@ public class DriverService {
                 registerDriverRequest.getPhoneNumber());
         driverControllerValidator.validateEmail(registerDriverRequest.getEmailId());
         driverControllerValidator.validateAge(registerDriverRequest.getDob());
+        driverControllerValidator.validateAddress(registerDriverRequest.getPermanentAddress());
+        driverControllerValidator.validateAddress(registerDriverRequest.getCurrentAddress());
+        driverControllerValidator.validateName(registerDriverRequest.getName());
 
         //transforming the Data
         DriverDataModel driverDataModel =
@@ -138,6 +142,8 @@ public class DriverService {
 
         //Saving the data to the database
         driverRepository.save(driverDataModel);
+
+        return ResponseEntity.ok(driverDataModel.getDriverId());
     }
 
     /**

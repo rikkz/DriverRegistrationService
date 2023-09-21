@@ -74,7 +74,7 @@ public class DriverDataModelTransformer {
     }
 
     /**
-     * Tranforming the DriverDataModel to getDriverInformationResponse
+     * Transforming the DriverDataModel to getDriverInformationResponse
      * @param driverDataMode
      * @return
      */
@@ -121,6 +121,7 @@ public class DriverDataModelTransformer {
                 .addressLine1(address.getAddressLine1())
                 .addressLine2(address.getAddressLine2())
                 .addressLine3(address.getAddressLine3())
+                .country(address.getCountry())
                 .city(address.getCity())
                 .state(address.getState())
                 .zipCode(address.getZipCode())

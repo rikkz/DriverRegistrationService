@@ -1,11 +1,15 @@
 package com.intuit.DriverRegistrationService.validations;
 
 import com.intuit.DriverRegistrationService.config.CountryDigitsMapConfig;
+import com.intuit.DriverRegistrationService.exceptions.codes.BadRequestExceptionCode;
 import com.intuit.DriverRegistrationService.exceptions.model.*;
 import com.intuit.DriverRegistrationService.exceptions.service.DriverAlreadyExistInTheDB;
 import com.intuit.DriverRegistrationService.exceptions.service.DriverDoesNotExistInTheDB;
 import com.intuit.DriverRegistrationService.model.entities.dbModel.DriverDataModel;
+import com.intuit.DriverRegistrationService.model.request.common.Address;
+import com.intuit.DriverRegistrationService.model.request.common.Name;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Component;
 
@@ -126,6 +130,38 @@ public class DriverControllerValidator {
             throw new InvalidAgeException(
                     String.format("Following Age : %s is not valid, It's should be between 18 to 100 years",
                             birthDate));
+        }
+    }
+
+    public void validateName(final Name name) {
+        if (StringUtils.isAllEmpty(name.getFirstName()) || name.getFirstName().length() > 21) {
+            throw new BadRequestException(BadRequestExceptionCode.INVALID_NAME, "Please verify  first name");
+        }
+
+        if (StringUtils.isAllEmpty(name.getLastName()) || name.getLastName().length() > 21) {
+            throw new BadRequestException(BadRequestExceptionCode.INVALID_NAME, "Please verify lastName");
+        }
+    }
+
+    public void validateAddress(final Address address) {
+        if (StringUtils.isAllEmpty(address.getAddressLine1()) || address.getAddressLine1().length() > 21) {
+            throw new BadRequestException(BadRequestExceptionCode.INVALID_ADDRESS, "Please verify address Line 1");
+        }
+
+        if (StringUtils.isAllEmpty(address.getState()) || address.getState().length() > 21) {
+            throw new BadRequestException(BadRequestExceptionCode.INVALID_ADDRESS, "Please verify address state");
+        }
+
+        if (StringUtils.isAllEmpty(address.getCity()) || address.getCity().length() > 21) {
+            throw new BadRequestException(BadRequestExceptionCode.INVALID_ADDRESS, "Please verify address city");
+        }
+
+        if (StringUtils.isAllEmpty(address.getCountry()) || address.getCountry().length() > 21) {
+            throw new BadRequestException(BadRequestExceptionCode.INVALID_ADDRESS, "Please verify address country");
+        }
+
+        if (StringUtils.isAllEmpty(address.getZipCode()) || address.getZipCode().length() > 21) {
+            throw new BadRequestException(BadRequestExceptionCode.INVALID_ADDRESS, "Please verify address zipcode");
         }
     }
 }

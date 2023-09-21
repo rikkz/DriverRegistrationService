@@ -16,9 +16,7 @@ public class Name {
     /**
      * Represents the first name of the driver.
      */
-    @NotBlank
-    @NonNull
-    @Size(min = 1, max = 20, message = "First name length must be between 1 and 20 characters")
+    @Size(min = 1, max = 1, message = "First name length must be between 1 and 20 characters")
     private String firstName;
 
     /**

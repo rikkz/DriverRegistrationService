@@ -48,10 +48,10 @@ public class DriverController {
      * @param registerDriverRequest The request body containing driver registration information.
      */
     @PostMapping("/registerDriver")
-    public void registerDriver (
+    public ResponseEntity<String> registerDriver (
             @NonNull @RequestBody final RegisterDriverRequest registerDriverRequest) {
         log.info("Starting the registerDriver Journey");
-        driverService.registerDriver(registerDriverRequest);
+        return driverService.registerDriver(registerDriverRequest);
     }
 
     /**

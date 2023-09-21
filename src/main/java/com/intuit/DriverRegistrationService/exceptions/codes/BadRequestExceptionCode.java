@@ -41,5 +41,15 @@ public enum BadRequestExceptionCode {
     /**
      * Error code indicating that driver already exist.
      */
-    DRIVER_ALREADY_EXIST
+    DRIVER_ALREADY_EXIST,
+
+    /**
+     * Error code indicating that name is not Valid.
+     */
+    INVALID_ADDRESS,
+
+    /**
+     * Error code indicating that address not valid.
+     */
+    INVALID_NAME
 }
