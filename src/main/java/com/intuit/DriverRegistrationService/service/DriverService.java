@@ -8,11 +8,13 @@ import com.intuit.DriverRegistrationService.model.request.UpdateDriverDetailsReq
 import com.intuit.DriverRegistrationService.model.request.UpdateDriverStatusRequest;
 import com.intuit.DriverRegistrationService.model.response.GetDriverInformationResponse;
 import com.intuit.DriverRegistrationService.model.response.IsDriverRegisteredResponse;
+import com.intuit.DriverRegistrationService.model.response.RegisterDriverResponse;
 import com.intuit.DriverRegistrationService.repository.DriverRepository;
 import com.intuit.DriverRegistrationService.validations.DriverControllerValidator;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +51,6 @@ public class DriverService {
     /**
      * Service operation for the isDriverRegistered.
      */
-    @Cacheable(value = "DriverCache", key = "{#requestedCountryCode , #requestedMobileNumber}")
     public ResponseEntity<IsDriverRegisteredResponse> isDriverRegistered(
             @NonNull final String requestedCountryCode,
             @NonNull final String requestedMobileNumber) {
@@ -58,9 +59,10 @@ public class DriverService {
         //validations
         driverControllerValidator.validateMobileNumber(requestedCountryCode, requestedMobileNumber);
 
+        String requestedCompleteMobileNumber = requestedCountryCode + "-" + requestedMobileNumber;
        //calling the repository to fetch details
         List<DriverDataModel> driverDataModelList =
-                    driverRepository.findByMobileNumber(requestedCountryCode + "-" + requestedMobileNumber);
+                    driverRepository.findByMobileNumber(requestedCompleteMobileNumber);
 
         //returning the response
         return driverDataModelTransformer.buildIsDriverRegisteredResponse(driverDataModelList);
@@ -115,8 +117,7 @@ public class DriverService {
     /**
      * Service operation to register a new driver details
      */
-    @CacheEvict(value = "DriverCache" ,  key = "{#registerDriverRequest.getCountryCode() , #registerDriverRequest.getPhoneNumber()}")
-    public ResponseEntity<String> registerDriver(@NonNull final RegisterDriverRequest registerDriverRequest) {
+    public ResponseEntity<RegisterDriverResponse> registerDriver(@NonNull final RegisterDriverRequest registerDriverRequest) {
 
         log.info("Reached the Service Layer for registerDriver");
         //validations
@@ -143,7 +144,9 @@ public class DriverService {
         //Saving the data to the database
         driverRepository.save(driverDataModel);
 
-        return ResponseEntity.ok(driverDataModel.getDriverId());
+        return ResponseEntity.ok(RegisterDriverResponse.builder()
+                        .driverInformation(driverDataModelTransformer.buildDriverInformationResponse(driverDataModel))
+                .build());
     }
 
     /**

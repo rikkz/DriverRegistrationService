@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
@@ -48,7 +50,7 @@ class DriverServiceTest {
                 .thenReturn(Collections.singletonList(DriverDataModel.builder().build()));
         when(driverDataModelTransformer.buildIsDriverRegisteredResponse(anyList()))
                 .thenReturn(ResponseEntity.ok(IsDriverRegisteredResponse.builder()
-                                .driverId("123")
+                                .driverInformation(GetDriverInformationResponse.builder().build())
                                 .isDriverRegistered(true)
                         .build()));
 
@@ -116,7 +118,7 @@ class DriverServiceTest {
         // Arrange
         when(driverRepository.findById(anyString())).thenReturn(Optional.of(DriverDataModel.builder().build()));
         when(driverDataModelTransformer.createDataDriverModelWithUpdatedStatus(any(), anyString()))
-                .thenReturn(DriverDataModel.builder().build());
+                .thenReturn(DriverDataModel.builder().mobileNumber("+91-7988164534").build());
 
         // Act
         driverService.updateDriverStatus(UpdateDriverStatusRequest

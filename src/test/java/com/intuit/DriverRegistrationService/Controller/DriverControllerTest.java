@@ -8,6 +8,7 @@ import com.intuit.DriverRegistrationService.model.request.common.Gender;
 import com.intuit.DriverRegistrationService.model.request.common.Name;
 import com.intuit.DriverRegistrationService.model.response.GetDriverInformationResponse;
 import com.intuit.DriverRegistrationService.model.response.IsDriverRegisteredResponse;
+import com.intuit.DriverRegistrationService.model.response.RegisterDriverResponse;
 import com.intuit.DriverRegistrationService.service.DriverService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -66,6 +67,8 @@ public class DriverControllerTest {
     void testRegisterDriver() {
         // Create a sample request
 
+        ResponseEntity<RegisterDriverResponse> registerDriverResponseMock = mock(ResponseEntity.class);
+
         Address sampleAddress = Address.builder()
                 .addressLine1("1st Street")
                 .addressLine2("2nd Lane")
@@ -93,11 +96,14 @@ public class DriverControllerTest {
                 .phoneNumber("7988164534")
                 .build();
 
+        when(driverService.registerDriver(request)).thenReturn(registerDriverResponseMock);
+
         // Call the controller method
-        driverController.registerDriver(request);
+        ResponseEntity<RegisterDriverResponse> response = driverController.registerDriver(request);
 
         // Verify that the service method was called with the correct argument
         verify(driverService, times(1)).registerDriver(request);
+        assertEquals(registerDriverResponseMock , response);
     }
 
     @Test

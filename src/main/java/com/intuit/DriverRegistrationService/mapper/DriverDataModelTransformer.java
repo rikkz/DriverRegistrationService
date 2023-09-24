@@ -67,36 +67,39 @@ public class DriverDataModelTransformer {
 
         return ResponseEntity.ok(IsDriverRegisteredResponse.builder()
                 .isDriverRegistered(true)
-                .driverId(driverDataModelList.get(0).getDriverId())
+                .driverInformation(buildDriverInformationResponse(driverDataModelList.get(0)))
                 .build());
     }
 
     /**
      * Transforming the DriverDataModel to getDriverInformationResponse
-     * @param driverDataMode
+     * @param driverDataModel
      * @return
      */
     public ResponseEntity<GetDriverInformationResponse> buildGetDriverInformationResponse(
-            @NonNull DriverDataModel driverDataMode) {
+            @NonNull DriverDataModel driverDataModel) {
 
-        GetDriverInformationResponse getDriverInformationResponse =
-                GetDriverInformationResponse.builder()
-                        .driverId(driverDataMode.getDriverId())
-                        .addressBook(driverDataMode.getDriverAddressBook())
-                        .driverStatus(driverDataMode.getDriverStatus().toString())
+        return ResponseEntity.ok(buildDriverInformationResponse(driverDataModel));
+    }
+
+    public GetDriverInformationResponse buildDriverInformationResponse( @NonNull DriverDataModel driverDataModel) {
+
+        return GetDriverInformationResponse.builder()
+                        .driverId(driverDataModel.getDriverId())
+                        .addressBook(driverDataModel.getDriverAddressBook())
+                        .driverStatus(driverDataModel.getDriverStatus().toString())
                         .contact(Contact.builder()
-                                .emailId(driverDataMode.getEmailId())
-                                .mobileNumber(driverDataMode.getMobileNumber())
+                                .emailId(driverDataModel.getEmailId())
+                                .mobileNumber(driverDataModel.getMobileNumber())
                                 .build())
                         .person(Person.builder()
-                                .gender(driverDataMode.getDriverPersonalInformation().getGender())
-                                .lastName(driverDataMode.getDriverPersonalInformation().getLastName())
-                                .middleName(driverDataMode.getDriverPersonalInformation().getMiddleName())
-                                .firstName(driverDataMode.getDriverPersonalInformation().getFirstName())
-                                .dateOfBirth(driverDataMode.getDriverPersonalInformation().getDateOfBirth())
+                                .gender(driverDataModel.getDriverPersonalInformation().getGender())
+                                .lastName(driverDataModel.getDriverPersonalInformation().getLastName())
+                                .middleName(driverDataModel.getDriverPersonalInformation().getMiddleName())
+                                .firstName(driverDataModel.getDriverPersonalInformation().getFirstName())
+                                .dateOfBirth(driverDataModel.getDriverPersonalInformation().getDateOfBirth())
                                 .build())
                         .build();
-        return ResponseEntity.ok(getDriverInformationResponse);
     }
 
     public DriverDataModel createDataDriverModelWithUpdatedStatus(final DriverDataModel requestedDataDriverModel,

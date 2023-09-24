@@ -7,6 +7,7 @@ import com.intuit.DriverRegistrationService.model.request.UpdateDriverDetailsReq
 import com.intuit.DriverRegistrationService.model.request.UpdateDriverStatusRequest;
 import com.intuit.DriverRegistrationService.model.response.GetDriverInformationResponse;
 import com.intuit.DriverRegistrationService.model.response.IsDriverRegisteredResponse;
+import com.intuit.DriverRegistrationService.model.response.RegisterDriverResponse;
 import com.intuit.DriverRegistrationService.service.DriverService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -48,10 +49,13 @@ public class DriverController {
      * @param registerDriverRequest The request body containing driver registration information.
      */
     @PostMapping("/registerDriver")
-    public ResponseEntity<String> registerDriver (
+    public ResponseEntity<RegisterDriverResponse> registerDriver (
             @NonNull @RequestBody final RegisterDriverRequest registerDriverRequest) {
         log.info("Starting the registerDriver Journey");
-        return driverService.registerDriver(registerDriverRequest);
+
+        ResponseEntity<RegisterDriverResponse> response = driverService.registerDriver(registerDriverRequest);
+
+        return response;
     }
 
     /**
