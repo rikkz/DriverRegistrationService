@@ -17,11 +17,6 @@ public class Contact {
     private final String emailId;
 
     /**
-     * The country code associated with the individual's phone number.
-     */
-    private final String countryCode;
-
-    /**
      * The mobile phone number of the individual.
      */
     private final String mobileNumber;

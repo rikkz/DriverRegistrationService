@@ -18,5 +18,5 @@ public interface DriverRepository extends MongoRepository<DriverDataModel, Strin
      * @param mobileNumber  The mobile phone number of the driver.
      * @return A list of {@link DriverDataModel} objects matching the given country code and mobile number.
      */
-    List<DriverDataModel> findByCountryCodeAndMobileNumber(String countryCode, String mobileNumber);
+    List<DriverDataModel> findByMobileNumber(String mobileNumber);
 }

@@ -123,8 +123,7 @@ class DriverDataModelTransformerTest {
                 .driverId("1234567890") // Replace with a unique driver ID
                 .driverStatus(DriverStatus.ACTIVE) // Replace with the desired status
                 .emailId("driver@example.com")
-                .countryCode("+1")
-                .mobileNumber("1234567890")
+                .mobileNumber("+91-1234567890")
                 .driverAddressBook(createSampleAddressBook())
                 .driverPersonalInformation(createSamplePerson())
                 .driverLocation("USA:NY:New York") // Replace with the desired location

@@ -60,7 +60,7 @@ public class DriverService {
 
        //calling the repository to fetch details
         List<DriverDataModel> driverDataModelList =
-                    driverRepository.findByCountryCodeAndMobileNumber(requestedCountryCode, requestedMobileNumber);
+                    driverRepository.findByMobileNumber(requestedCountryCode + "-" + requestedMobileNumber);
 
         //returning the response
         return driverDataModelTransformer.buildIsDriverRegisteredResponse(driverDataModelList);
@@ -134,8 +134,8 @@ public class DriverService {
 
         //calling the repository to fetch details
         List<DriverDataModel> driverDataModelList =
-                driverRepository.findByCountryCodeAndMobileNumber(
-                        registerDriverRequest.getCountryCode(), registerDriverRequest.getPhoneNumber());
+                driverRepository.findByMobileNumber(
+                        registerDriverRequest.getCountryCode() + "-" + registerDriverRequest.getPhoneNumber());
 
         //validate if the record Already exist or not.
         driverControllerValidator.driverShouldNotExist(driverDataModelList);

@@ -18,7 +18,7 @@ public class DriverServiceIntegrationTesting {
     @Test
     public void successDriverIsRegistered() {
         ResponseEntity<IsDriverRegisteredResponse> response =
-                driverService.isDriverRegistered("+91" , "9050756251");
+                driverService.isDriverRegistered("+91" , "9999999999");
 
         Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
         Assertions.assertTrue(response.getBody().getIsDriverRegistered());

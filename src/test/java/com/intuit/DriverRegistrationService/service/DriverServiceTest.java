@@ -44,7 +44,7 @@ class DriverServiceTest {
     @Test
     void testIsDriverRegistered_DriverExists() {
         // Arrange
-        when(driverRepository.findByCountryCodeAndMobileNumber(anyString(), anyString()))
+        when(driverRepository.findByMobileNumber(anyString()))
                 .thenReturn(Collections.singletonList(DriverDataModel.builder().build()));
         when(driverDataModelTransformer.buildIsDriverRegisteredResponse(anyList()))
                 .thenReturn(ResponseEntity.ok(IsDriverRegisteredResponse.builder()
@@ -67,7 +67,7 @@ class DriverServiceTest {
     @Test
     void testIsDriverRegistered_DriverDoesNotExist() {
         // Arrange
-        when(driverRepository.findByCountryCodeAndMobileNumber(anyString(), anyString()))
+        when(driverRepository.findByMobileNumber(anyString()))
                 .thenReturn(Collections.emptyList());
         when(driverDataModelTransformer.buildIsDriverRegisteredResponse(anyList()))
                 .thenReturn(ResponseEntity.ok(IsDriverRegisteredResponse.builder()
@@ -134,7 +134,7 @@ class DriverServiceTest {
     void testRegisterDriver() {
         // Arrange
         RegisterDriverRequest request = mock(RegisterDriverRequest.class);
-        when(driverRepository.findByCountryCodeAndMobileNumber(anyString(), anyString())).thenReturn(Collections.emptyList());
+        when(driverRepository.findByMobileNumber(anyString())).thenReturn(Collections.emptyList());
         when(driverDataModelTransformer.transformRegisterDriverRequest(any()))
                 .thenReturn(DriverDataModel.builder().build());
 
