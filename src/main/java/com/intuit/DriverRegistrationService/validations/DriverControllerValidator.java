@@ -74,13 +74,9 @@ public class DriverControllerValidator {
     }
 
     public void isValidDriverId(final String driverId) {
-        try {
-            UUID.fromString(driverId);
-            // If parsing is successful, the UUID is valid.
-        } catch (IllegalArgumentException e) {
-            // If parsing fails, the UUID is not valid.
+        if(!driverId.contains("DR")) {
             throw new InvalidDriverIdException(
-                    String.format("Following Driver Id : %s is not valid, It's not in correct format", driverId));
+                       String.format("Following Driver Id : %s is not valid, It's not in correct format", driverId));
         }
     }
     public void doesDriverExist(final Optional<DriverDataModel> driverDataModelOptional,

@@ -48,7 +48,7 @@ public class DriverServiceIntegrationTesting {
 
     @Test
     public void successGetDriverInformation() {
-        Assertions.assertTrue(driverService.getDriverInformation("5fdccb98-97cf-44a4-8179-5104ba955749")
+        Assertions.assertTrue(driverService.getDriverInformation("DR001695555516115")
                 .getStatusCode().is2xxSuccessful());
     }
 
