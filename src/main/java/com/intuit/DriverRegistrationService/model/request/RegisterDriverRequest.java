@@ -3,7 +3,6 @@ package com.intuit.DriverRegistrationService.model.request;
 import com.intuit.DriverRegistrationService.model.request.common.Address;
 import com.intuit.DriverRegistrationService.model.request.common.Gender;
 import com.intuit.DriverRegistrationService.model.request.common.Name;
-import jakarta.validation.Valid;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;

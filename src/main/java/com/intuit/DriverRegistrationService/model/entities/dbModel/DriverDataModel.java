@@ -8,6 +8,8 @@ import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 /**
  * The `DriverDataModel` class represents a data model for storing information about a driver.
  * It encapsulates details such as driver ID, status, contact information, address book,
@@ -32,14 +34,8 @@ public class DriverDataModel {
      * The email address of the individual.
      */
     private final String emailId;
-
     /**
-     * The country code associated with the individual's phone number.
-     */
-    private final String countryCode;
-
-    /**
-     * The mobile phone number of the individual.
+     * The country code and the combined individual's phone number
      */
     private final String mobileNumber;
 
@@ -57,4 +53,9 @@ public class DriverDataModel {
      * Represents the Location of the Driver, in COUNTRY:STATE:CITY format.
      */
     private final String driverLocation;
+
+    private List<VehicleDataModel> driverVehicles;
+
+    private List<Document> documents;
+
 }

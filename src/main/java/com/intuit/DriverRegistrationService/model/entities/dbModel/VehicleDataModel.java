@@ -7,6 +7,7 @@ import com.intuit.DriverRegistrationService.model.entities.vehicle.VehicleType;
 import lombok.Builder;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -66,4 +67,9 @@ public class VehicleDataModel {
      * The passenger capacity of the vehicle, representing the `VehicleCapacity` enum.
      */
     private final VehicleCapacity vehicleCapacity;
+
+    /**
+     * Documents Required by the Vehocle to be registered.
+     */
+    private List<Integer> documentIds;
 }

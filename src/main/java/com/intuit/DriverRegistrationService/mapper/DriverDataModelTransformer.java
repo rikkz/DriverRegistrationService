@@ -24,7 +24,6 @@ import java.util.UUID;
 public class DriverDataModelTransformer {
 
     public DriverDataModel transformRegisterDriverRequest(final RegisterDriverRequest registerDriverRequest) {
-
         String newDriverId = UUID.randomUUID().toString();
         log.info("Here is the newDriverId :" + newDriverId);
         AddressBook addressBook = AddressBook.builder()
